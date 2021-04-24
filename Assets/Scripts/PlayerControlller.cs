@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerControlller : MonoBehaviour
 {
     [SerializeField] Transform view_pos;
-    [SerializeField] Collider action_hand;
     [SerializeField] float mv_speed = 10f;
     [SerializeField] float jmp_force = 20f;
     [SerializeField] float mouse_sense = 2f;
@@ -28,7 +27,7 @@ public class PlayerControlller : MonoBehaviour
     }
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+
     }
 
     void Update()
