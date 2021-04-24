@@ -20,11 +20,10 @@ public class Bridge : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log("Trigger on - " + other );
         if(other.tag == "Player")
         {
             GenerateZone(transform.position);
+            gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
     }
 }

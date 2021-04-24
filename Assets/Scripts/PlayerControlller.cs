@@ -11,6 +11,9 @@ public class PlayerControlller : MonoBehaviour
     [SerializeField] bool mouse_inv = false;
 
     [SerializeField] int[] min_max_view_angle = new int[2]{-60, 60};
+
+    public delegate void DeathHandler();
+    public event DeathHandler Death;
     Camera main_cam;
     RaycastHit hit_obj;
 
@@ -95,6 +98,8 @@ public class PlayerControlller : MonoBehaviour
     void OnTriggerEnter(Collider other) 
     {
         if(other.tag == "Respawn")
-            Debug.Log("Wake up, you are OBOSRALSYA");
+        {
+            Death();
+        }
     }
 }

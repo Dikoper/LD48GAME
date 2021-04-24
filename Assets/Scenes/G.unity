@@ -143,6 +143,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_prefab: {fileID: 8132406564754351528, guid: e37d2a2d0088d9042b25d94c4406cf0d,
     type: 3}
+  fadefx_prefab: {fileID: 7156255044618579114, guid: 090cb435a5284a34ab123a10e9cea3f1,
+    type: 3}
+  dm_prefab: {fileID: 4856094500624485995, guid: 4a891b0b5b60d0e46b2d3fe780d633d5,
+    type: 3}
 --- !u!4 &1911737754
 Transform:
   m_ObjectHideFlags: 0

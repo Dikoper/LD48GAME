@@ -5,6 +5,10 @@ using UnityEngine;
 public class DreamMan : MonoBehaviour
 {
     [SerializeField]GameObject[] zones_prefabs;
+    [SerializeField] int zone_age = 3;
+
+    public delegate void NewZoneHandler(Vector3 pos);
+    public event NewZoneHandler NewZone;
     List<GameObject> zones = new List<GameObject>();
     //GameObject cur_zone;
     // Start is called before the first frame update
@@ -32,10 +36,10 @@ public class DreamMan : MonoBehaviour
 
     void GenNewZone(Vector3 pos)
     {
+        NewZone(pos);
         zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], pos, Quaternion.identity));
-
         ZoneCatch();
-        ZoneDispose(3);
+        ZoneDispose(zone_age);
     }
 
     void ZoneDispose(int age)
