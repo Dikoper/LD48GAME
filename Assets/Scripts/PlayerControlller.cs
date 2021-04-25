@@ -30,7 +30,7 @@ public class PlayerControlller : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -62,6 +62,7 @@ public class PlayerControlller : MonoBehaviour
             rb.AddRelativeForce(transform.up * jmp_force * Mathf.Abs(Physics.gravity.y));
 
         var new_pos = ((transform.forward * v) + (transform.right * h)) * Time.deltaTime * mv_speed;
+
         rb.MovePosition(transform.position + new_pos);
     }
 

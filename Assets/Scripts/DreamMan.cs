@@ -17,10 +17,12 @@ public class DreamMan : MonoBehaviour
         if(zones_prefabs.Length < 1)
             throw new System.Exception("Need to add some zones");
 
-        if(zones.Count < 1)
-            zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], Vector3.zero, Quaternion.identity));
+        // if(zones.Count < 1)
+        //     zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], Vector3.zero, Quaternion.identity));
 
-        ZoneCatch();
+        // ZoneCatch();
+        if(zones.Count < 1)
+            StartCoroutine(ZoneSpawn(Vector3.zero, Quaternion.identity));
     }
 
     // Update is called once per frame
@@ -29,17 +31,25 @@ public class DreamMan : MonoBehaviour
         
     }
 
-    void ZoneCatch()
+    void GenNewZone(Transform t)
     {
-        zones[zones.Count - 1].GetComponentInChildren<Bridge>().GenerateZone += GenNewZone;
+        NewZone(t);
+        StartCoroutine(ZoneSpawn(t.position, t.rotation));
     }
 
-    void GenNewZone(Transform pos)
+    IEnumerator ZoneSpawn(Vector3 pos, Quaternion rot)
     {
-        NewZone(pos);
-        zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], pos.position, pos.rotation));
-        ZoneCatch();
+        yield return new WaitForSeconds(1);
+        zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], pos, rot));
+        zones[zones.Count - 1].GetComponentInChildren<Bridge>().GenerateZone += GenNewZone;
+        //ZoneCatch();
         ZoneDispose(zone_age);
+    }
+
+    
+    void ZoneCatch()
+    {
+        //zones[zones.Count - 1].GetComponentInChildren<Bridge>().GenerateZone += GenNewZone;
     }
 
     void ZoneDispose(int age)

@@ -25,20 +25,23 @@ public class G : MonoBehaviour
     public State currentGameState {set; get;}
     void Awake() 
     {
-       DontDestroyOnLoad(this.gameObject); 
+       DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {
         StateManager(State.InMenu);
-        // currentGameState = State.InMenu;
-        // SceneManager.LoadScene("Game");
-        // SceneManager.sceneLoaded += GameSceneLoaderHandler;
     }
 
     void GameSceneLoaderHandler(Scene scene, LoadSceneMode mode)
     {
         InitGame();
         Debug.Log("Handle player inst");
+        StartCoroutine(PlayerInit());
+    }
+
+    IEnumerator PlayerInit()
+    {
+        yield return StartCoroutine(Fade());
         player = Instantiate(player_prefab, Vector3.one, Quaternion.identity);
         player.GetComponent<PlayerControlller>().Death += PlayerDeathHandler;
     }
@@ -69,7 +72,7 @@ public class G : MonoBehaviour
             break;
             case State.Intro:
                 currentGameState = State.Intro;
-                SceneManager.LoadScene("Intro");
+                Camera.main.GetComponent<Animator>().SetTrigger("Start");
             break;
             case State.InGame:
                 currentGameState = State.InGame;
