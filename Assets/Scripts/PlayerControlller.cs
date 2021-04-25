@@ -53,7 +53,8 @@ public class PlayerControlller : MonoBehaviour
         PlayerView(v_view,  h_view);
 
         if(Input.GetButtonDown("Fire1"))
-            PlayerTouch();
+            if(PlayerTouch())
+                Death();
     }
 
     void MovePlayer(float v, float h, bool j = false)
