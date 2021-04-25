@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bridge : MonoBehaviour
 {
-    public delegate void BridgeHandler(Vector3 pos);
+    public delegate void BridgeHandler(Transform pos);
     public event BridgeHandler GenerateZone;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class Bridge : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            GenerateZone(transform.position);
+            GenerateZone(transform);
             gameObject.SetActive(false);
         }
     }

@@ -7,7 +7,7 @@ public class DreamMan : MonoBehaviour
     [SerializeField]GameObject[] zones_prefabs;
     [SerializeField] int zone_age = 3;
 
-    public delegate void NewZoneHandler(Vector3 pos);
+    public delegate void NewZoneHandler(Transform pos);
     public event NewZoneHandler NewZone;
     List<GameObject> zones = new List<GameObject>();
     //GameObject cur_zone;
@@ -34,10 +34,10 @@ public class DreamMan : MonoBehaviour
         zones[zones.Count - 1].GetComponentInChildren<Bridge>().GenerateZone += GenNewZone;
     }
 
-    void GenNewZone(Vector3 pos)
+    void GenNewZone(Transform pos)
     {
         NewZone(pos);
-        zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], pos, Quaternion.identity));
+        zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], pos.position, pos.rotation));
         ZoneCatch();
         ZoneDispose(zone_age);
     }
