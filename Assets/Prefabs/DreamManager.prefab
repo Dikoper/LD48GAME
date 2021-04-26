@@ -46,4 +46,5 @@ MonoBehaviour:
   zones_prefabs:
   - {fileID: 205424098008872558, guid: d55e7125bb55dfc4fbfa88497de5feee, type: 3}
   - {fileID: 205424098008872558, guid: cc0b0d1b7801c2e47b8c330082b3013c, type: 3}
-  zone_age: 3
+  - {fileID: 205424098008872558, guid: df468650ec71a3c4b82febd58cbde228, type: 3}
+  - {fileID: 205424098008872558, guid: 3aacdd9f46edea3428ae1a7485d984fb, type: 3}

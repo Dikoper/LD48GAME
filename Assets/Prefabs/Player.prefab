@@ -64,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view_pos: {fileID: 8132406564975716524}
   mv_speed: 10
-  jmp_force: 20
+  jmp_force: 25
   mouse_sense: 2
   mouse_inv: 0
   min_max_view_angle: a6ffffff5a000000

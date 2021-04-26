@@ -5,7 +5,7 @@ using UnityEngine;
 public class DreamMan : MonoBehaviour
 {
     [SerializeField]GameObject[] zones_prefabs;
-    [SerializeField] int zone_age = 3;
+    int zone_age = 2;
 
     public delegate void NewZoneHandler(Transform pos);
     public event NewZoneHandler NewZone;
@@ -16,11 +16,6 @@ public class DreamMan : MonoBehaviour
     {
         if(zones_prefabs.Length < 1)
             throw new System.Exception("Need to add some zones");
-
-        // if(zones.Count < 1)
-        //     zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], Vector3.zero, Quaternion.identity));
-
-        // ZoneCatch();
         if(zones.Count < 1)
             StartCoroutine(ZoneSpawn(Vector3.zero, Quaternion.identity));
     }
@@ -42,20 +37,14 @@ public class DreamMan : MonoBehaviour
         yield return new WaitForSeconds(1);
         zones.Add(Instantiate(zones_prefabs[Random.Range(0,zones_prefabs.Length)], pos, rot));
         zones[zones.Count - 1].GetComponentInChildren<Bridge>().GenerateZone += GenNewZone;
-        //ZoneCatch();
         ZoneDispose(zone_age);
-    }
-
-    
-    void ZoneCatch()
-    {
-        //zones[zones.Count - 1].GetComponentInChildren<Bridge>().GenerateZone += GenNewZone;
     }
 
     void ZoneDispose(int age)
     {
-        if(zones.Count % age < 1)
-        {
+        if(zones.Count >= age)
+        {  
+            Debug.Log("ZoneDisp - " + zones.Count);
             Destroy(zones[0]);
             zones.RemoveAt(0);
         }
